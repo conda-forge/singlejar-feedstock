@@ -1,4 +1,4 @@
-{% set version = "6.4.0" %}
+{% set version = "7.1.2" %}
 
 {% set base_url = "https://github.com/bazelbuild/bazel/releases/download" %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: {{ base_url }}/{{ version }}/bazel-{{ version }}-dist.zip
-    sha256: bd88ff602c8bbb29ee82ba2a6b12ad092d51ec668c6577f9628f18e48ff4e51e
+    sha256: 9cf6ed2319c816919d97015eef6d0c5942cd1aed48e03c73ba0815d953ed61ab
     patches:
       # Keep these patches in sync with the relevant ones from bazel-feedstock.
       - patches/0001-allow-args-to-be-passed-to-bazel_build.patch
@@ -18,22 +18,23 @@ source:
       - patches/0005-Link-to-abseil-libraries.patch
 
   - url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-x86_64  # [build_platform == "osx-64"]
-    sha256: 8609d57a2a356aef929d39e7dda1f68c79cb29ac7ccfec08003d98d7b7e8b602  # [build_platform == "osx-64"]
+    sha256: 04fabfc064cf1c7277ea13865ecc03a3d108044cc9a52bc9e10b4ca900efc83d  # [build_platform == "osx-64"]
     fn: bazel  # [build_platform == "osx-64"]
   - url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-arm64  # [build_platform == "osx-arm64"]
-    sha256: 80c3ce494f38957de995169f52684ea0cf5280cd6cc02630f9d62f73f6aae018  # [build_platform == "osx-arm64"]
+    sha256: 24756421f084373daa8e03d193bb1b956e2fd27ee1d6a555f62e554c8ace9045  # [build_platform == "osx-arm64"]
     fn: bazel  # [build_platform == "osx-arm64"]
   - url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-linux-x86_64  # [build_platform == "linux-64"]
-    sha256: 6a14f8840119cce6f7e6f03c3c9c82606d925495969187e5baae61463d2f5023  # [build_platform == "linux-64"]
+    sha256: 76177543d84d31adeda0c0df066ebc2138f523b7f46dd1d59898995d7373ec3d  # [build_platform == "linux-64"]
     fn: bazel  # [build_platform == "linux-64"]
 
 build:
-  number: 5
+  number: 0
   skip: true  # [win]
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - bazel-toolchain
     - openjdk
