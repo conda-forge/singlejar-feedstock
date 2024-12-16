@@ -37,6 +37,7 @@ requirements:
   host:
     - libabseil
     - libprotobuf
+    - protobuf-bazel-rules
 
 test:
   commands:
