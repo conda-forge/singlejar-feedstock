@@ -18,6 +18,8 @@ sed -ie "s:\${BUILD_PREFIX}:${BUILD_PREFIX}:" third_party/grpc/BUILD
 sed -ie "s:\${BUILD_PREFIX}:${BUILD_PREFIX}:" third_party/systemlibs/protobuf/BUILD
 sed -ie "s:\${BUILD_PREFIX}:${BUILD_PREFIX}:" third_party/ijar/BUILD
 
+cp -ap $PREFIX/share/bazel/protobuf/bazel third_party/systemlibs/protobuf/
+
 chmod +x bazel
 pushd src/tools/singlejar
 ../../../bazel build \
