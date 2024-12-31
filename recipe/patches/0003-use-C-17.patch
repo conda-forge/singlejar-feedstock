@@ -1,4 +1,4 @@
-From 636dfc58407df4c92c7f6f7e507b20ce04de21aa Mon Sep 17 00:00:00 2001
+From 54c405ef5e6fb5b17fd275f3f2aeebf7e142f99b Mon Sep 17 00:00:00 2001
 From: "H. Vetinari" <h.vetinari@gmx.com>
 Date: Thu, 25 May 2023 20:35:02 +1100
 Subject: [PATCH 3/3] use C++17
@@ -8,10 +8,10 @@ Subject: [PATCH 3/3] use C++17
  1 file changed, 2 insertions(+)
 
 diff --git a/.bazelrc b/.bazelrc
-index 01ce022..81aac88 100755
+index c5c66ab..092147f 100755
 --- a/.bazelrc
 +++ b/.bazelrc
-@@ -93,3 +93,5 @@ test:ci-windows --test_env=JAVA_HOME
+@@ -104,3 +104,5 @@ test:ci-windows --test_env=JAVA_HOME
  test:ci-windows --test_env=TEST_INSTALL_BASE=C:/b/bazeltest_install_base
  test:ci-windows --test_env=REPOSITORY_CACHE=C:/b/bazeltest_repo_cache
  test:ci-windows --test_tag_filters=-no_windows,-slow
