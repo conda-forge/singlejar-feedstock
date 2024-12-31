@@ -16,6 +16,8 @@ source:
       - patches/0003-Match-version-of-protobuf-java-with-libprotobuf.patch
       - patches/0004-use-C-17.patch
       - patches/0005-Link-to-abseil-libraries.patch
+      # backport https://github.com/madler/zlib/commit/4bd9a71f3539b5ce47f0c67ab5e01f3196dc8ef9 to vendored zlib
+      - patches/0006-Remove-fdopen-defines-in-zutil.h.patch
 
   - url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-x86_64   # [build_platform == "osx-64"]
     sha256: ccc67fa48a6444818a5b85e8174c89ca2630df60c1e2327714d944035a240fc9    # [build_platform == "osx-64"]
