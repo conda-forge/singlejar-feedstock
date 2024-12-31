@@ -1,7 +1,7 @@
-From 880539457fb014fd7462684ae407054f2123a285 Mon Sep 17 00:00:00 2001
+From a89003695606e0572eb6fe55f28a1d10b56495a9 Mon Sep 17 00:00:00 2001
 From: "Uwe L. Korn" <uwelk@xhochy.com>
 Date: Sun, 21 Mar 2021 21:26:54 +0100
-Subject: [PATCH 2/5] Build with native dependencies
+Subject: [PATCH 2/6] Build with native dependencies
 
 ---
  WORKSPACE                                     |  37 +-
@@ -16,7 +16,7 @@ Subject: [PATCH 2/5] Build with native dependencies
  create mode 100644 third_party/systemlibs/protobuf_deps.bzl
 
 diff --git a/WORKSPACE b/WORKSPACE
-index ff47163e72..97e0b73b16 100644
+index b7f17ad5fd..c015de0717 100644
 --- a/WORKSPACE
 +++ b/WORKSPACE
 @@ -90,12 +90,43 @@ bind(
@@ -67,10 +67,10 @@ index ff47163e72..97e0b73b16 100644
  # @rules_python//python:defs.bzl. It is used by protobuf.
  # TODO(#9029): We could potentially replace this with the real @rules_python.
 diff --git a/src/main/java/com/google/devtools/build/lib/BUILD b/src/main/java/com/google/devtools/build/lib/BUILD
-index 9b52063095..88a18fa876 100644
+index eb051d03f4..cb6ccf0399 100644
 --- a/src/main/java/com/google/devtools/build/lib/BUILD
 +++ b/src/main/java/com/google/devtools/build/lib/BUILD
-@@ -428,7 +428,7 @@ java_library(
+@@ -430,7 +430,7 @@ java_library(
          "//third_party:guava",
          "//third_party:jsr305",
          "@com_google_protobuf//:protobuf_java",

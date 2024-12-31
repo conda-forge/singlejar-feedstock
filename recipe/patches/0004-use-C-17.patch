@@ -1,22 +1,22 @@
-From 51b4f8c41d32747a28c21e70ae028bbc778143ad Mon Sep 17 00:00:00 2001
+From ba04b125cf2987fd28e33f7d9e245b05e27f448c Mon Sep 17 00:00:00 2001
 From: "H. Vetinari" <h.vetinari@gmx.com>
 Date: Thu, 25 May 2023 20:35:02 +1100
-Subject: [PATCH 4/5] use C++17
+Subject: [PATCH 4/6] use C++17
 
 ---
  .bazelrc | 2 ++
  1 file changed, 2 insertions(+)
 
 diff --git a/.bazelrc b/.bazelrc
-index 20921ea73c..7dc5a94810 100644
+index 7ed38a73bf..435b15e40c 100644
 --- a/.bazelrc
 +++ b/.bazelrc
-@@ -34,6 +34,8 @@ build:bzlmod --experimental_enable_bzlmod
+@@ -45,6 +45,8 @@ build:windows --host_cxxopt=/std:c++17
  build --java_language_version=11
  build --tool_java_language_version=11
  
 +build --cxxopt=-std=c++17 --host_cxxopt=-std=c++17
 +
- # User-specific .bazelrc
- try-import %workspace%/user.bazelrc
+ # Manually enable cc toolchain resolution before it is flipped. https://github.com/bazelbuild/bazel/issues/7260
+ build --incompatible_enable_cc_toolchain_resolution
  
