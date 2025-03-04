@@ -22,7 +22,7 @@ source:
     sha256: 9e8bc284ef87a9a6d8c64e8a4dee69cc172e2261b14d7ebbc7fba3096130f8c5    # [build_platform == "osx-64"]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
