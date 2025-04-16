@@ -15,10 +15,10 @@ export EXTRA_BAZEL_ARGS="--host_javabase=@local_jdk//:jdk"
 sed -ie "s:\${INSTALL_NAME_TOOL}:${INSTALL_NAME_TOOL:-install_name_tool}:" src/BUILD
 sed -ie "s:\${PREFIX}:${PREFIX}:" src/BUILD
 sed -ie "s:\${BUILD_PREFIX}:${BUILD_PREFIX}:" third_party/grpc/BUILD
-sed -ie "s:\${BUILD_PREFIX}:${BUILD_PREFIX}:" third_party/systemlibs/protobuf/BUILD
+# sed -ie "s:\${BUILD_PREFIX}:${BUILD_PREFIX}:" third_party/systemlibs/protobuf/BUILD
 sed -ie "s:\${BUILD_PREFIX}:${BUILD_PREFIX}:" third_party/ijar/BUILD
 
-cp -ap $PREFIX/share/bazel/protobuf/bazel third_party/systemlibs/protobuf/
+# cp -ap $PREFIX/share/bazel/protobuf/bazel third_party/systemlibs/protobuf/
 
 chmod +x bazel
 pushd src/tools/singlejar

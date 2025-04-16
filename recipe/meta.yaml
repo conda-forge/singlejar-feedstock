@@ -12,7 +12,7 @@ source:
     patches:
       # Keep these patches in sync with the relevant ones from bazel-feedstock.
       - patches/0001-allow-args-to-be-passed-to-bazel_build.patch
-      - patches/0002-Build-with-native-dependencies.patch
+      # - patches/0002-Build-with-native-dependencies.patch
       - patches/0003-use-C-17.patch
 
   - fn: bazel
@@ -20,6 +20,8 @@ source:
     sha256: 307329e9d18fcd73876e0ce8c8e82135cff3b7fc1012ad5daf44fd4bfe7222c5    # [build_platform == "linux-64"]
     url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-x86_64   # [build_platform == "osx-64"]
     sha256: 7e6e5a57ba4e6a789f81855a3bff9380093b2c0cde219b8ce50ad946ac507ef3    # [build_platform == "osx-64"]
+    url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-arm64    # [build_platform == "osx-arm64"]
+    sha256: 2496a38fa579cc9c58f3aa36df610a05961bc2244c482f2bf914efb1b9607359    # [build_platform == "osx-arm64"]
 
 build:
   number: 0
