@@ -27,7 +27,7 @@ source:
     fn: bazel                                                                   # [build_platform == "linux-64"]
 
 build:
-  number: 6
+  number: 7
   skip: true  # [win]
 
 requirements:

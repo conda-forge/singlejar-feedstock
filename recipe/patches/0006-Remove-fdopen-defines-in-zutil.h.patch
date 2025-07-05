@@ -1,4 +1,4 @@
-From 00f04c4cd2cc35a8384275a6064fb50eb4ed8175 Mon Sep 17 00:00:00 2001
+From 3d4390876226b7be345e6941933857ba078df320 Mon Sep 17 00:00:00 2001
 From: Mark Adler <madler@alumni.caltech.edu>
 Date: Tue, 12 Dec 2023 22:19:05 -0600
 Subject: [PATCH 6/6] Remove fdopen #defines in zutil.h.
