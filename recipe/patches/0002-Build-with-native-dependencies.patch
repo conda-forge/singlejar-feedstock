@@ -1,4 +1,4 @@
-From 99e08169850ab4d2fd04ff44fc14272dd0dca335 Mon Sep 17 00:00:00 2001
+From c0633abdb393f03c61625fc986a164793897ced1 Mon Sep 17 00:00:00 2001
 From: "Uwe L. Korn" <uwelk@xhochy.com>
 Date: Sun, 21 Mar 2021 21:26:54 +0100
 Subject: [PATCH 2/3] Build with native dependencies
@@ -20,10 +20,10 @@ Subject: [PATCH 2/3] Build with native dependencies
  create mode 100644 third_party/systemlibs/protobuf_deps.bzl
 
 diff --git a/MODULE.bazel b/MODULE.bazel
-index bd5505d08b..ca59560413 100644
+index 497031b9e0..e3cd20d8d0 100644
 --- a/MODULE.bazel
 +++ b/MODULE.bazel
-@@ -38,6 +38,10 @@ bazel_dep(name = "rules_shell", version = "0.2.0")
+@@ -43,6 +43,10 @@ bazel_dep(name = "rules_cc", version = "0.1.1")
  
  # repo_name needs to be used, until WORKSPACE mode is to be supported in bazel_tools
  bazel_dep(name = "protobuf", version = "29.0", repo_name = "com_google_protobuf")
@@ -34,20 +34,20 @@ index bd5505d08b..ca59560413 100644
  
  # TODO: wyv@ - add remoteapis to the BCR
  bazel_dep(name = "remoteapis", version = "")
-@@ -119,6 +123,8 @@ maven.install(
+@@ -126,6 +130,8 @@ maven.install(
          "com.google.http-client:google-http-client-gson:1.42.0",
          "com.google.j2objc:j2objc-annotations:1.3",
-         "com.google.turbine:turbine:0.7.0",
+         "com.google.turbine:turbine:0.10.0",
 +        "com.google.protobuf:protobuf-java:PROTOBUF_JAVA_MAJOR_VERSION.PROTOC_VERSION",
 +        "com.google.protobuf:protobuf-java-util:PROTOBUF_JAVA_MAJOR_VERSION.PROTOC_VERSION",
          "com.guardsquare:proguard-base:jar:7.5.0",
          "com.ryanharter.auto.value:auto-value-gson-extension:1.3.1",
          "com.ryanharter.auto.value:auto-value-gson-factory:1.3.1",
 diff --git a/src/main/java/com/google/devtools/build/lib/BUILD b/src/main/java/com/google/devtools/build/lib/BUILD
-index db383daae2..c4090424d1 100644
+index a2e6752c24..4394aa3160 100644
 --- a/src/main/java/com/google/devtools/build/lib/BUILD
 +++ b/src/main/java/com/google/devtools/build/lib/BUILD
-@@ -515,7 +515,7 @@ java_library(
+@@ -517,7 +517,7 @@ java_library(
          "//third_party:guava",
          "//third_party:jsr305",
          "@com_google_protobuf//:protobuf_java",
