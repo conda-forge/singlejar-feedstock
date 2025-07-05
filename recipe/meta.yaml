@@ -1,4 +1,4 @@
-{% set version = "7.5.0" %}
+{% set version = "7.6.1" %}
 
 {% set base_url = "https://github.com/bazelbuild/bazel/releases/download" %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: {{ base_url }}/{{ version }}/bazel-{{ version }}-dist.zip
-    sha256: 9d3d9b74cf3cbba0401874c3a1f70efc6531878d34146b22d4fd209276efafdd
+    sha256: c1106db93eb8a719a6e2e1e9327f41b003b6d7f7e9d04f206057990775a7760e
     patches:
       # Keep these patches in sync with the relevant ones from bazel-feedstock.
       - patches/0001-allow-args-to-be-passed-to-bazel_build.patch
@@ -17,12 +17,12 @@ source:
 
   - fn: bazel
     url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-linux-x86_64    # [build_platform == "linux-64"]
-    sha256: 9d682f192177604efc484d1254c6405502e3f23a35335563a7799b8d0ce2be6b    # [build_platform == "linux-64"]
+    sha256: 5536a6553897daddcd0a530be42667ca1e3f14ef8d1eaf7fad8f74c63e0340b6    # [build_platform == "linux-64"]
     url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-x86_64   # [build_platform == "osx-64"]
-    sha256: 9e8bc284ef87a9a6d8c64e8a4dee69cc172e2261b14d7ebbc7fba3096130f8c5    # [build_platform == "osx-64"]
+    sha256: bdda8480e65f4a4cf3c243c09e10bbebf924ba6d0824a632c4e3081d1aa8b9f8    # [build_platform == "osx-64"]
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win]
 
 requirements:
