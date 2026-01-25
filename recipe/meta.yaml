@@ -1,4 +1,4 @@
-{% set version = "8.5.1" %}
+{% set version = "9.0.0" %}
 
 {% set base_url = "https://github.com/bazelbuild/bazel/releases/download" %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: {{ base_url }}/{{ version }}/bazel-{{ version }}-dist.zip
-    sha256: bf66a1cbaaafec32e1e103d0e07343082f1f0f3f20ad4c6b66c4eda3f690ed4d
+    sha256: dfa496089624d726a158afcac353725166f81c5708ee1ecc9e662f2891b3544d
     patches:
       # Keep these patches in sync with the relevant ones from bazel-feedstock.
       - patches/0001-allow-args-to-be-passed-to-bazel_build.patch
@@ -17,11 +17,11 @@ source:
 
   - fn: bazel
     url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-linux-x86_64  # [build_platform == "linux-64"]
-    sha256: 8f1902f9464c888ed77f160e5fd649d8e6fe57b0d543a7d1d4a75f4db34bcc2e  # [build_platform == "linux-64"]
+    sha256: ecc5a225b5fcad3e0c08ec24d266f2b2a75b24259180e64583bb2d3c1586e986  # [build_platform == "linux-64"]
     url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-x86_64  # [build_platform == "osx-64"]
-    sha256: 3e3ab12fe80d354eb12acfe460bfe634c40852fde1775de9e46b3e527263165f  # [build_platform == "osx-64"]
+    sha256: 1166bfa2139e4475679dd20bdeac252809b7ad1cd7f381e4d9c6f108858ac4ca  # [build_platform == "osx-64"]
     url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-arm64  # [build_platform == "osx-arm64"]
-    sha256: de2c6675d5713cb930572d57dd448c822ce143c8f29f74c0a59e7dcd4bd6329b  # [build_platform == "osx-arm64"]
+    sha256: 97b647cadcb90514f4b4bd2cbbceed37d57bcda48d429edc62abcd72c03e5b40  # [build_platform == "osx-arm64"]
 
 build:
   number: 0
