@@ -1,4 +1,4 @@
-{% set version = "6.5.0" %}
+{% set version = "6.6.0" %}
 
 {% set base_url = "https://github.com/bazelbuild/bazel/releases/download" %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: {{ base_url }}/{{ version }}/bazel-{{ version }}-dist.zip
-    sha256: fc89da919415289f29e4ff18a5e01270ece9a6fe83cb60967218bac4a3bb3ed2
+    sha256: 276c395ab589d36317b52d3cddf70c026a975793c53f3e855c4f104e10da7fcd
     patches:
       # Keep these patches in sync with the relevant ones from bazel-feedstock.
       - patches/0001-allow-args-to-be-passed-to-bazel_build.patch
@@ -20,14 +20,14 @@ source:
       - patches/0006-Remove-fdopen-defines-in-zutil.h.patch
 
   - url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-x86_64   # [build_platform == "osx-64"]
-    sha256: ccc67fa48a6444818a5b85e8174c89ca2630df60c1e2327714d944035a240fc9    # [build_platform == "osx-64"]
+    sha256: 31daff61f2184c3d2645ad41642754e7ce95597f4280d6d308fb000170ee6a91    # [build_platform == "osx-64"]
     fn: bazel                                                                   # [build_platform == "osx-64"]
   - url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-linux-x86_64    # [build_platform == "linux-64"]
-    sha256: 218ce0aed544d29084f4d9ff98f01bc784b90fe4c79dab63fa990dc68e66eaa9    # [build_platform == "linux-64"]
+    sha256: ba49c881348a57370ce09728a1d78aadc6b3b796b73c62526a88ce8efc79ce73    # [build_platform == "linux-64"]
     fn: bazel                                                                   # [build_platform == "linux-64"]
 
 build:
-  number: 7
+  number: 0
   skip: true  # [win]
 
 requirements:
