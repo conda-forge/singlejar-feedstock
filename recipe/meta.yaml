@@ -18,9 +18,9 @@ source:
       - patches/0005-Link-to-abseil-libraries.patch
 
   - fn: bazel-{{ version }}
-  - url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-x86_64  # [build_platform == "osx-64"]
+    url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-x86_64  # [build_platform == "osx-64"]
     sha256: 31daff61f2184c3d2645ad41642754e7ce95597f4280d6d308fb000170ee6a91   # [build_platform == "osx-64"]
-  - url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-linux-x86_64   # [build_platform == "linux-64"]
+    url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-linux-x86_64   # [build_platform == "linux-64"]
     sha256: ba49c881348a57370ce09728a1d78aadc6b3b796b73c62526a88ce8efc79ce73   # [build_platform == "linux-64"]
     url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-arm64   # [build_platform == "osx-arm64"]
     sha256: 1d6bd066eb4609ca559f892434aba7392d2aee20534bfb03e0dfd2fc81762d78   # [build_platform == "osx-arm64"]
