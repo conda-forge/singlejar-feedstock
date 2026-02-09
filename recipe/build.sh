@@ -23,9 +23,9 @@ sed -ie "s:ABSEIL_VERSION:${ABSEIL_VERSION}:" MODULE.bazel
 
 cp -ap $PREFIX/share/bazel/protobuf/bazel third_party/systemlibs/protobuf/
 
-chmod +x bazel
+chmod +x bazel-${PKG_VERSION}
 pushd src/tools/singlejar
-../../../bazel build \
+../../../bazel-${PKG_VERSION} build \
 	--logging=6 \
 	--subcommands \
 	--verbose_failures \
