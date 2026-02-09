@@ -15,7 +15,7 @@ source:
       - patches/0002-Build-with-native-dependencies.patch
       - patches/0003-use-C-17.patch
 
-  - fn: bazel
+  - fn: bazel-{{ version }}
     url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-linux-x86_64  # [build_platform == "linux-64"]
     sha256: 8f1902f9464c888ed77f160e5fd649d8e6fe57b0d543a7d1d4a75f4db34bcc2e  # [build_platform == "linux-64"]
     url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-x86_64  # [build_platform == "osx-64"]
@@ -24,7 +24,7 @@ source:
     sha256: de2c6675d5713cb930572d57dd448c822ce143c8f29f74c0a59e7dcd4bd6329b  # [build_platform == "osx-arm64"]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
