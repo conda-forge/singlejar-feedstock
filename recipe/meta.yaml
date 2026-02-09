@@ -1,4 +1,4 @@
-{% set version = "6.5.0" %}
+{% set version = "6.6.0" %}
 
 {% set base_url = "https://github.com/bazelbuild/bazel/releases/download" %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: {{ base_url }}/{{ version }}/bazel-{{ version }}-dist.zip
-    sha256: fc89da919415289f29e4ff18a5e01270ece9a6fe83cb60967218bac4a3bb3ed2
+    sha256: 276c395ab589d36317b52d3cddf70c026a975793c53f3e855c4f104e10da7fcd
     patches:
       # Keep these patches in sync with the relevant ones from bazel-feedstock.
       - patches/0001-allow-args-to-be-passed-to-bazel_build.patch
@@ -16,18 +16,17 @@ source:
       - patches/0003-Match-version-of-protobuf-java-with-libprotobuf.patch
       - patches/0004-use-C-17.patch
       - patches/0005-Link-to-abseil-libraries.patch
-      # backport https://github.com/madler/zlib/commit/4bd9a71f3539b5ce47f0c67ab5e01f3196dc8ef9 to vendored zlib
-      - patches/0006-Remove-fdopen-defines-in-zutil.h.patch
 
-  - url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-x86_64   # [build_platform == "osx-64"]
-    sha256: ccc67fa48a6444818a5b85e8174c89ca2630df60c1e2327714d944035a240fc9    # [build_platform == "osx-64"]
-    fn: bazel                                                                   # [build_platform == "osx-64"]
-  - url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-linux-x86_64    # [build_platform == "linux-64"]
-    sha256: 218ce0aed544d29084f4d9ff98f01bc784b90fe4c79dab63fa990dc68e66eaa9    # [build_platform == "linux-64"]
-    fn: bazel                                                                   # [build_platform == "linux-64"]
+  - fn: bazel-{{ version }}
+    url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-x86_64  # [build_platform == "osx-64"]
+    sha256: 31daff61f2184c3d2645ad41642754e7ce95597f4280d6d308fb000170ee6a91   # [build_platform == "osx-64"]
+    url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-linux-x86_64   # [build_platform == "linux-64"]
+    sha256: ba49c881348a57370ce09728a1d78aadc6b3b796b73c62526a88ce8efc79ce73   # [build_platform == "linux-64"]
+    url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-arm64   # [build_platform == "osx-arm64"]
+    sha256: 1d6bd066eb4609ca559f892434aba7392d2aee20534bfb03e0dfd2fc81762d78   # [build_platform == "osx-arm64"]
 
 build:
-  number: 7
+  number: 0
   skip: true  # [win]
 
 requirements:
@@ -35,7 +34,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
-    - bazel-toolchain
+    - bazel-toolchain <0.5
     - openjdk
     - libprotobuf
     - sed

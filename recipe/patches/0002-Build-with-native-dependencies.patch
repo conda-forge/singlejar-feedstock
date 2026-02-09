@@ -1,7 +1,7 @@
-From a89003695606e0572eb6fe55f28a1d10b56495a9 Mon Sep 17 00:00:00 2001
+From 61e9e48bca4063edd737ac28acb6acf73fd1fed7 Mon Sep 17 00:00:00 2001
 From: "Uwe L. Korn" <uwelk@xhochy.com>
 Date: Sun, 21 Mar 2021 21:26:54 +0100
-Subject: [PATCH 2/6] Build with native dependencies
+Subject: [PATCH 2/5] Build with native dependencies
 
 ---
  WORKSPACE                                     |  37 +-
@@ -16,7 +16,7 @@ Subject: [PATCH 2/6] Build with native dependencies
  create mode 100644 third_party/systemlibs/protobuf_deps.bzl
 
 diff --git a/WORKSPACE b/WORKSPACE
-index b7f17ad5fd..c015de0717 100644
+index 4503c50375..55ec0a35ba 100644
 --- a/WORKSPACE
 +++ b/WORKSPACE
 @@ -90,12 +90,43 @@ bind(

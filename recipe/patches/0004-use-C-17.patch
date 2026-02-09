@@ -1,19 +1,19 @@
-From ba04b125cf2987fd28e33f7d9e245b05e27f448c Mon Sep 17 00:00:00 2001
+From b31f678d46bf827a7b6352b41ff1ffc80dffe51b Mon Sep 17 00:00:00 2001
 From: "H. Vetinari" <h.vetinari@gmx.com>
 Date: Thu, 25 May 2023 20:35:02 +1100
-Subject: [PATCH 4/6] use C++17
+Subject: [PATCH 4/5] use C++17
 
 ---
  .bazelrc | 2 ++
  1 file changed, 2 insertions(+)
 
 diff --git a/.bazelrc b/.bazelrc
-index 7ed38a73bf..435b15e40c 100644
+index 093fcb78ac..4df619fd14 100644
 --- a/.bazelrc
 +++ b/.bazelrc
-@@ -45,6 +45,8 @@ build:windows --host_cxxopt=/std:c++17
- build --java_language_version=11
+@@ -47,6 +47,8 @@ build --java_runtime_version=remotejdk_11
  build --tool_java_language_version=11
+ build --tool_java_runtime_version=remotejdk_11
  
 +build --cxxopt=-std=c++17 --host_cxxopt=-std=c++17
 +
