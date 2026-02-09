@@ -31,6 +31,7 @@ pushd src/tools/singlejar
 	--logging=6 \
 	--subcommands \
 	--verbose_failures \
+	--noincompatible_enable_proto_toolchain_resolution \
 	--define=PROTOBUF_INCLUDE_PATH=${PREFIX}/include \
 	--extra_toolchains=//bazel_toolchain:cc_cf_toolchain \
 	--extra_toolchains=//bazel_toolchain:cc_cf_host_toolchain \
