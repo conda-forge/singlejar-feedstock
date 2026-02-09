@@ -1,5 +1,7 @@
 bot:
   abi_migration_branches:
+  - 8.x
+  - 7.x
   - 6.x
   automerge: true
 build_platform:
