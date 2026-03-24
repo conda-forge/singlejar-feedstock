@@ -15,7 +15,6 @@ source:
       # Keep these patches in sync with the relevant ones from bazel-feedstock.
       - patches/0001-allow-args-to-be-passed-to-bazel_build.patch
       - patches/0002-Build-with-native-dependencies.patch
-      - patches/0003-use-C-17.patch
   - if: build_platform == "linux-64"
     then:
       url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-linux-x86_64
@@ -33,7 +32,7 @@ source:
       file_name: bazel-${{ version }}
 
 build:
-  number: 0
+  number: 1
   skip: win
 
 requirements:
@@ -47,7 +46,9 @@ requirements:
     - sed
   host:
     - libabseil
+    - libabseil-bazel-systemlib
     - libprotobuf
+    - libprotobuf-bazel-systemlib
     - protobuf-bazel-rules
 
 tests:
@@ -66,4 +67,3 @@ extra:
     - xhochy
     - h-vetinari
     - conda-forge/bazel
-
