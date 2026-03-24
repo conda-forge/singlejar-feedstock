@@ -1,0 +1,69 @@
+schema_version: 1
+
+context:
+  version: "9.0.1"
+  base_url: https://github.com/bazelbuild/bazel/releases/download
+
+package:
+  name: singlejar
+  version: ${{ version }}
+
+source:
+  - url: ${{ base_url }}/${{ version }}/bazel-${{ version }}-dist.zip
+    sha256: 3f336b4510a8210f954fa3a7d6cfbd271b6f9d639732fdc11c000b6fbfca3fbe
+    patches:
+      # Keep these patches in sync with the relevant ones from bazel-feedstock.
+      - patches/0001-allow-args-to-be-passed-to-bazel_build.patch
+      - patches/0002-Build-with-native-dependencies.patch
+      - patches/0003-use-C-17.patch
+  - if: build_platform == "linux-64"
+    then:
+      url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-linux-x86_64
+      sha256: 7051ff8710ce96b5d44b5985372e97168588d58e982c3ceba58379aee8573c87
+      file_name: bazel-${{ version }}
+  - if: build_platform == "osx-64"
+    then:
+      url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-darwin-x86_64
+      sha256: 2af25112f96d9b3c9ac12da4a746722ef2238f2686b810a60e0f7251fddb9569
+      file_name: bazel-${{ version }}
+  - if: build_platform == "osx-arm64"
+    then:
+      url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-darwin-arm64
+      sha256: a0263765f31ba22d6f5dc4f85ef7e9952e1252752f998c86b7be8d7ae5a36c6a
+      file_name: bazel-${{ version }}
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - bazel-toolchain >=0.5.8
+    - openjdk
+    - libprotobuf
+    - sed
+  host:
+    - libabseil
+    - libprotobuf
+    - protobuf-bazel-rules
+
+tests:
+  - script:
+      - test -f $PREFIX/bin/singlejar
+      - test -f $PREFIX/bin/singlejar_local
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: A tool for generating singleton jars
+  homepage: https://github.com/bazelbuild/bazel/tree/master/src/tools/singlejar
+
+extra:
+  recipe-maintainers:
+    - xhochy
+    - h-vetinari
+    - conda-forge/bazel
+
