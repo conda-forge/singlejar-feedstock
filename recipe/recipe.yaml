@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "9.0.2"
+  version: "9.1.0"
   base_url: https://github.com/bazelbuild/bazel/releases/download
 
 package:
@@ -10,7 +10,7 @@ package:
 
 source:
   - url: ${{ base_url }}/${{ version }}/bazel-${{ version }}-dist.zip
-    sha256: d80b8f708e7a5840fd09b853a4343cace7e4c3504d4e8ac67367d4cb6224436e
+    sha256: 229e999cec4f408946d368af6c33c5137fe999e9966538562f8c90b0de7aa0ad
     patches:
       # Keep these patches in sync with the relevant ones from bazel-feedstock.
       - patches/0001-allow-args-to-be-passed-to-bazel_build.patch
