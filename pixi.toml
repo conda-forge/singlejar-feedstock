@@ -5,7 +5,7 @@
 
 [workspace]
 name = "singlejar-feedstock"
-version = "3.59.1"  # conda-smithy version used to generate this file
+version = "3.60.0"  # conda-smithy version used to generate this file
 description = "Pixi configuration for conda-forge/singlejar-feedstock"
 authors = ["@conda-forge/singlejar"]
 channels = ["conda-forge"]
