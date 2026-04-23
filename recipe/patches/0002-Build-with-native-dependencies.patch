@@ -1,18 +1,18 @@
-From baba2b9b4ebbccb7d890c2befea8daa10f329a3b Mon Sep 17 00:00:00 2001
+From 3f4ce0006faa6bb39475e5802ebe56479043db60 Mon Sep 17 00:00:00 2001
 From: "Uwe L. Korn" <uwelk@xhochy.com>
 Date: Sun, 21 Mar 2021 21:26:54 +0100
 Subject: [PATCH 2/2] Build with native dependencies
 
 ---
- MODULE.bazel                                  | 18 ++++-----------
+ MODULE.bazel                                  | 22 ++++--------------
  .../java/com/google/devtools/build/lib/BUILD  |  2 +-
  third_party/grpc/BUILD                        | 23 ++++++++-----------
  third_party/systemlibs/protobuf_deps.bzl      |  2 ++
- 4 files changed, 17 insertions(+), 28 deletions(-)
+ 4 files changed, 17 insertions(+), 32 deletions(-)
  create mode 100644 third_party/systemlibs/protobuf_deps.bzl
 
 diff --git a/MODULE.bazel b/MODULE.bazel
-index 62c1c29..fbec7cc 100755
+index 0ad0c82a5d..ba9dba483a 100644
 --- a/MODULE.bazel
 +++ b/MODULE.bazel
 @@ -13,7 +13,7 @@ module(
@@ -35,7 +35,7 @@ index 62c1c29..fbec7cc 100755
  
  # Depend on apple_support first and then rules_cc so that the Xcode toolchain
  # from apple_support wins over the generic Unix toolchain from rules_cc.
-@@ -100,18 +104,6 @@ single_version_override(
+@@ -101,22 +105,6 @@ single_version_override(
      version = "1.2.1.bcr.1",
  )
  
@@ -44,6 +44,10 @@ index 62c1c29..fbec7cc 100755
 -# We need to package the lite runtime jar for Bazel's bootstrap build
 -# 2. Partially revert of https://github.com/protocolbuffers/protobuf/commit/7ec5e19c0743b80c5097434a05cc0e972e7b4e7a
 -# to support grpc
+-# 3. Pull in the removal of the memoizedIsInitialized field for messages with no
+-# required fields early. This reduces the memory usage of Bazel and avoids
+-# spread in memory usage between Bazel and Blaze.
+-# https://github.com/protocolbuffers/protobuf/blob/adf9e8b80fd10398b82e16c4ea72f2d2cffb0e9b/src/google/protobuf/compiler/java/full/message.cc#L884C1-L899C6
 -single_version_override(
 -    module_name = "protobuf",
 -    patch_strip = 1,
@@ -55,7 +59,7 @@ index 62c1c29..fbec7cc 100755
  #   https://github.com/grpc/grpc-java/pull/12148
  #   https://github.com/grpc/grpc-java/pull/12207
 diff --git a/src/main/java/com/google/devtools/build/lib/BUILD b/src/main/java/com/google/devtools/build/lib/BUILD
-index d385177..db65056 100755
+index d385177454..db650563d7 100644
 --- a/src/main/java/com/google/devtools/build/lib/BUILD
 +++ b/src/main/java/com/google/devtools/build/lib/BUILD
 @@ -582,7 +582,7 @@ java_library(
@@ -68,7 +72,7 @@ index d385177..db65056 100755
      ],
  )
 diff --git a/third_party/grpc/BUILD b/third_party/grpc/BUILD
-index 1ef653c..f5e9185 100755
+index 1ef653cfdb..f5e9185eb2 100644
 --- a/third_party/grpc/BUILD
 +++ b/third_party/grpc/BUILD
 @@ -39,28 +39,23 @@ filegroup(
@@ -111,7 +115,7 @@ index 1ef653c..f5e9185 100755
  filegroup(
 diff --git a/third_party/systemlibs/protobuf_deps.bzl b/third_party/systemlibs/protobuf_deps.bzl
 new file mode 100644
-index 0000000..aafd89b
+index 0000000000..aafd89b0aa
 --- /dev/null
 +++ b/third_party/systemlibs/protobuf_deps.bzl
 @@ -0,0 +1,2 @@
