@@ -16,8 +16,8 @@ cp -ap $PREFIX/share/bazel/protobuf/bazel third_party/systemlibs/protobuf/
 
 source gen-bazel-toolchain
 
-export ABSEIL_VERSION="$(conda list -p "${PREFIX}" libabseil --fields version | awk '!/^#/ && NF { print $1; exit }')"
-export PROTOC_VERSION="$(conda list -p "${PREFIX}" libprotobuf --fields version | awk '!/^#/ && NF { print $1; exit }' | sed -E 's/^[0-9]+\.([0-9]+\.[0-9]+)$/\1/')"
+export ABSEIL_VERSION="$(grep '"version"' $PREFIX/conda-meta/libabseil-[0-9]*.json | sed 's/.*"version": "\(.*\)".*/\1/' | head -1)"
+export PROTOC_VERSION="$(grep '"version"' $PREFIX/conda-meta/libprotobuf-[0-9]*.json | sed 's/.*"version": "\(.*\)".*/\1/' | head -1 | sed -E 's/^[0-9]+\.([0-9]+\.[0-9]+)$/\1/')"
 export PROTOBUF_JAVA_MAJOR_VERSION="3"
 export EXTRA_BAZEL_ARGS="--host_javabase=@local_jdk//:jdk"
 sed -ie "s:ABSEIL_VERSION:${ABSEIL_VERSION}:" \
@@ -37,6 +37,7 @@ pushd src/tools/singlejar
 	--extra_toolchains=//bazel_toolchain:cc_cf_host_toolchain \
 	--platforms=//bazel_toolchain:target_platform \
 	--host_platform=//bazel_toolchain:build_platform \
+	--repo_contents_cache= \
 	--cpu ${TARGET_CPU} \
 	singlejar singlejar_local
 mkdir -p $PREFIX/bin
@@ -44,4 +45,4 @@ cp ../../../bazel-out/${TARGET_CPU}-fastbuild/bin/src/tools/singlejar/singlejar 
 cp ../../../bazel-out/${TARGET_CPU}-fastbuild/bin/src/tools/singlejar/singlejar_local $PREFIX/bin
 
 
-../../../bazel-${PKG_VERSION} clean --expunge
+../../../bazel-${PKG_VERSION} clean --expunge --repo_contents_cache=
