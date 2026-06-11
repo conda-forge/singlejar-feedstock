@@ -25,6 +25,11 @@ source:
       url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-darwin-x86_64
       sha256: 8606b14e335d10de6cd22c527b05a0fcaf85760c2dc158219f39128441ab2ae4
       file_name: bazel-${{ version }}
+  - if: build_platform == "linux-aarch64"
+    then:
+      url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-linux-arm64
+      sha256: 294ac7fdb0811b55f36a3d64e31e8e2ed061e4dbd209f957b9abade4a2698392
+      file_name: bazel-${{ version }}
   - if: build_platform == "osx-arm64"
     then:
       url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-darwin-arm64
