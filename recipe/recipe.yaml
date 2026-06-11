@@ -18,12 +18,12 @@ source:
   - if: build_platform == "linux-64"
     then:
       url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-linux-x86_64
-      sha256: 27ab26da32952a93c31e93239327e99ea41d23d5074e5ec3e326af96a8f34887
+      sha256: c5dc3d1fa6b9a834c1b89adfd3791fe90d9e39ccf79baac7f1daf3bba3c1147d
       file_name: bazel-${{ version }}
   - if: build_platform == "osx-64"
     then:
       url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-darwin-x86_64
-      sha256: 8606b14e335d10de6cd22c527b05a0fcaf85760c2dc158219f39128441ab2ae4
+      sha256: 55f26ecd2799d4de7ddd35e3828ff31e1f3a63532bf877a561e81fe11bec3f26
       file_name: bazel-${{ version }}
   - if: build_platform == "linux-aarch64"
     then:
