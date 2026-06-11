@@ -28,7 +28,7 @@ source:
   - if: build_platform == "osx-arm64"
     then:
       url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-darwin-arm64
-      sha256: ac12b2db2982bcc504de466a0459fd66b61f945aade5ffc8e34a5b4d86202776
+      sha256: c079130049a63710f67dcb4133cf6d9384fa12e46b4efce6ce8183a83f6c4342
       file_name: bazel-${{ version }}
 
 build:
