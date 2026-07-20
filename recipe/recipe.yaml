@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "9.1.1"
+  version: "9.2.0"
   base_url: https://github.com/bazelbuild/bazel/releases/download
 
 package:
@@ -10,7 +10,7 @@ package:
 
 source:
   - url: ${{ base_url }}/${{ version }}/bazel-${{ version }}-dist.zip
-    sha256: a6f66e26c8f4ca04fa83c796a404eff0544bd78336fbbcd122c9e10cbec4a5d7
+    sha256: 81af02b33128ec1922c6b60212df3fb6150baa96bb33d32ffa020e5fed47fefc
     patches:
       # Keep these patches in sync with the relevant ones from bazel-feedstock.
       - patches/0001-allow-args-to-be-passed-to-bazel_build.patch
@@ -18,26 +18,26 @@ source:
   - if: build_platform == "linux-64"
     then:
       url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-linux-x86_64
-      sha256: c5dc3d1fa6b9a834c1b89adfd3791fe90d9e39ccf79baac7f1daf3bba3c1147d
-      file_name: bazel-${{ version }}
-  - if: build_platform == "osx-64"
-    then:
-      url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-darwin-x86_64
-      sha256: 55f26ecd2799d4de7ddd35e3828ff31e1f3a63532bf877a561e81fe11bec3f26
+      sha256: 9cf3498e6d132b60ca90b1390499a07265084d4707e98c128c13c284da4c470f
       file_name: bazel-${{ version }}
   - if: build_platform == "linux-aarch64"
     then:
       url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-linux-arm64
-      sha256: 294ac7fdb0811b55f36a3d64e31e8e2ed061e4dbd209f957b9abade4a2698392
+      sha256: c3cea37c78285a9b1877be88f55277bc45acf960e006c64e8941c1f6cf1cab65
+      file_name: bazel-${{ version }}
+  - if: build_platform == "osx-64"
+    then:
+      url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-darwin-x86_64
+      sha256: 1549242b08b18af3e5df3b1023ed286a422d1a262ef81df3579c529749429cba
       file_name: bazel-${{ version }}
   - if: build_platform == "osx-arm64"
     then:
       url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-darwin-arm64
-      sha256: c079130049a63710f67dcb4133cf6d9384fa12e46b4efce6ce8183a83f6c4342
+      sha256: 7172ba73079d60cb4201d51ba9be2ebf08651c689eed42c5840eba41c9081cf6
       file_name: bazel-${{ version }}
 
 build:
-  number: 1
+  number: 0
   skip: win
 
 requirements:
