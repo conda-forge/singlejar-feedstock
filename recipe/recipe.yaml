@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "9.2.0"
+  version: "9.3.0"
   base_url: https://github.com/bazelbuild/bazel/releases/download
 
 package:
@@ -10,7 +10,7 @@ package:
 
 source:
   - url: ${{ base_url }}/${{ version }}/bazel-${{ version }}-dist.zip
-    sha256: 81af02b33128ec1922c6b60212df3fb6150baa96bb33d32ffa020e5fed47fefc
+    sha256: 2574404ada2d6dbbda58b02aa88b17c479763790e18cb875078c40c849cf6710
     patches:
       # Keep these patches in sync with the relevant ones from bazel-feedstock.
       - patches/0001-allow-args-to-be-passed-to-bazel_build.patch
@@ -18,22 +18,22 @@ source:
   - if: build_platform == "linux-64"
     then:
       url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-linux-x86_64
-      sha256: 9cf3498e6d132b60ca90b1390499a07265084d4707e98c128c13c284da4c470f
+      sha256: 08379739793204492ebb5e225df8fef9b11dcd287fe7333103920c090e26f7f4
       file_name: bazel-${{ version }}
   - if: build_platform == "linux-aarch64"
     then:
       url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-linux-arm64
-      sha256: c3cea37c78285a9b1877be88f55277bc45acf960e006c64e8941c1f6cf1cab65
+      sha256: 8072e1c9daa5a465a20a046d34aad528fa1d77681768ac1d032b0acd4c413298
       file_name: bazel-${{ version }}
   - if: build_platform == "osx-64"
     then:
       url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-darwin-x86_64
-      sha256: 1549242b08b18af3e5df3b1023ed286a422d1a262ef81df3579c529749429cba
+      sha256: 9a7ce91e91d4174210b809dfae491645572319ee9349ab499b332e59e2534361
       file_name: bazel-${{ version }}
   - if: build_platform == "osx-arm64"
     then:
       url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-darwin-arm64
-      sha256: 7172ba73079d60cb4201d51ba9be2ebf08651c689eed42c5840eba41c9081cf6
+      sha256: c7c63ed0fee80107e4434a7fefe24192685813e2c8fa2739f25b610594562bbb
       file_name: bazel-${{ version }}
 
 build:
