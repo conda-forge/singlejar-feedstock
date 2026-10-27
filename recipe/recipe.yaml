@@ -3,6 +3,13 @@ schema_version: 1
 context:
   version: "9.3.1"
   base_url: https://github.com/bazelbuild/bazel/releases/download
+  bz_os: ${{ "linux" if linux else "darwin" }}
+  bz_arch: ${{ "x86_64" if x86_64 else "arm64" }}
+  bz_hash: ${{ "444c309e4d3a3007ef39debdf483e4399912a7d0073f52dfb56352a15a727dd8" if build_platform == "linux-64" else
+               "b9dfab19c2f67d78f14aae8c6f250d40040177263c64a8cdf5008cd8e3a7db73" if build_platform == "linux-aarch64" else
+               "4fdea4f435654aac531a904f6a0513576e48df2d9bc03d85b7aaaeb913c3cedb" if build_platform == "osx-64" else
+               "68ccda4efe08b9f25b4cf480dadf7ffec428deaac0fe4868936c6085a80089dd" if build_platform == "osx-arm64" else
+               "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef" }}
 
 package:
   name: singlejar
@@ -15,29 +22,13 @@ source:
       # Keep these patches in sync with the relevant ones from bazel-feedstock.
       - patches/0001-allow-args-to-be-passed-to-bazel_build.patch
       - patches/0002-Build-with-native-dependencies.patch
-  - if: build_platform == "linux-64"
-    then:
-      url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-linux-x86_64
-      sha256: 444c309e4d3a3007ef39debdf483e4399912a7d0073f52dfb56352a15a727dd8
-      file_name: bazel-${{ version }}
-  - if: build_platform == "linux-aarch64"
-    then:
-      url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-linux-arm64
-      sha256: b9dfab19c2f67d78f14aae8c6f250d40040177263c64a8cdf5008cd8e3a7db73
-      file_name: bazel-${{ version }}
-  - if: build_platform == "osx-64"
-    then:
-      url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-darwin-x86_64
-      sha256: 4fdea4f435654aac531a904f6a0513576e48df2d9bc03d85b7aaaeb913c3cedb
-      file_name: bazel-${{ version }}
-  - if: build_platform == "osx-arm64"
-    then:
-      url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-darwin-arm64
-      sha256: 68ccda4efe08b9f25b4cf480dadf7ffec428deaac0fe4868936c6085a80089dd
-      file_name: bazel-${{ version }}
+
+  - url: ${{ base_url }}/${{ version }}/bazel_nojdk-${{ version }}-${{ bz_os }}-${{ bz_arch }}
+    sha256: ${{ bz_hash }}
+    file_name: bazel-${{ version }}
 
 build:
-  number: 0
+  number: 1
   skip: win
 
 requirements:

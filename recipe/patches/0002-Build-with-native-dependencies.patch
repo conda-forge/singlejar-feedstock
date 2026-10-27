@@ -1,33 +1,34 @@
-From e02c567cf8333529f9c82e6858f7500fd8bce3c5 Mon Sep 17 00:00:00 2001
+From 1c539a5ef66552415ae65deca14c0aa04443714e Mon Sep 17 00:00:00 2001
 From: "Uwe L. Korn" <uwelk@xhochy.com>
 Date: Sun, 21 Mar 2021 21:26:54 +0100
 Subject: [PATCH 2/2] Build with native dependencies
 
 ---
- MODULE.bazel                                  | 30 ++++++-------------
+ MODULE.bazel                                  | 34 ++++++-------------
  .../java/com/google/devtools/build/lib/BUILD  |  2 +-
- third_party/grpc/BUILD                        | 23 ++++++--------
+ third_party/grpc/BUILD                        | 23 +++++--------
  third_party/systemlibs/protobuf_deps.bzl      |  2 ++
- 4 files changed, 21 insertions(+), 36 deletions(-)
+ 4 files changed, 23 insertions(+), 38 deletions(-)
  create mode 100644 third_party/systemlibs/protobuf_deps.bzl
 
 diff --git a/MODULE.bazel b/MODULE.bazel
-index 0ad0c82a5d..964ebf0a43 100644
+index c947f9f7d1..dedff640ae 100644
 --- a/MODULE.bazel
 +++ b/MODULE.bazel
-@@ -13,8 +13,8 @@ module(
+@@ -13,21 +13,21 @@ module(
  # Bazel module dependencies
  # =========================================
  
 -bazel_dep(name = "abseil-cpp", version = "20250814.1")
 -bazel_dep(name = "bazel_skylib", version = "1.8.2")
 +bazel_dep(name = "abseil-cpp", version = "ABSEIL_VERSION")
-+bazel_dep(name = "bazel_skylib", version = "1.9.0")
++bazel_dep(name = "bazel_skylib", version = "1.9.2")
  bazel_dep(name = "blake3", version = "1.8.2")
  bazel_dep(name = "googleapis-grpc-java", version = "1.0.0")
  bazel_dep(name = "googleapis-java", version = "1.0.0")
-@@ -22,12 +22,12 @@ bazel_dep(name = "googleapis", version = "0.0.0-20250604-de157ca3")
- bazel_dep(name = "googletest", version = "1.17.0.bcr.2", repo_name = "com_google_googletest")
+ bazel_dep(name = "googleapis", version = "0.0.0-20250604-de157ca3")
+-bazel_dep(name = "googletest", version = "1.17.0.bcr.2", repo_name = "com_google_googletest")
++bazel_dep(name = "googletest", version = "1.18.0", repo_name = "com_google_googletest")
  bazel_dep(name = "grpc-java", version = "1.71.0")
  bazel_dep(name = "grpc", version = "1.76.0.bcr.1", repo_name = "com_github_grpc_grpc")
 -bazel_dep(name = "platforms", version = "1.0.0")
@@ -37,13 +38,16 @@ index 0ad0c82a5d..964ebf0a43 100644
  bazel_dep(name = "rules_graalvm", version = "0.11.1")
  bazel_dep(name = "rules_java", version = "9.1.0")
 -bazel_dep(name = "bazel_features", version = "1.42.1")
-+bazel_dep(name = "bazel_features", version = "1.43.0")
++bazel_dep(name = "bazel_features", version = "1.50.0")
  bazel_dep(name = "rules_jvm_external", version = "6.6")
  bazel_dep(name = "rules_license", version = "1.0.0")
  bazel_dep(name = "rules_pkg", version = "1.1.0")
-@@ -38,11 +38,15 @@ bazel_dep(name = "stardoc", version = "0.8.0", repo_name = "io_bazel_skydoc")
+@@ -36,13 +36,17 @@ bazel_dep(name = "rules_shell", version = "0.6.1")
+ bazel_dep(name = "rules_testing", version = "0.9.0")
+ bazel_dep(name = "stardoc", version = "0.8.0", repo_name = "io_bazel_skydoc")
  bazel_dep(name = "with_cfg.bzl", version = "0.13.0")
- bazel_dep(name = "zlib", version = "1.3.1.bcr.7")
+-bazel_dep(name = "zlib", version = "1.3.1.bcr.7")
++bazel_dep(name = "zlib", version = "1.3.2")
  bazel_dep(name = "zstd-jni", version = "1.5.6-9")
 +local_path_override(
 +    module_name = "protobuf",
@@ -52,9 +56,9 @@ index 0ad0c82a5d..964ebf0a43 100644
  
  # Depend on apple_support first and then rules_cc so that the Xcode toolchain
  # from apple_support wins over the generic Unix toolchain from rules_cc.
- bazel_dep(name = "apple_support", version = "1.24.5")
+ bazel_dep(name = "apple_support", version = "2.5.2")
 -bazel_dep(name = "rules_cc", version = "0.2.17")
-+bazel_dep(name = "rules_cc", version = "0.2.18")
++bazel_dep(name = "rules_cc", version = "0.2.22")
  
  # The starlark rules in @rules_cc are hidden behind macros but docgen needs to
  # load the rule class directly, so we need to expose the cc_compatibility_proxy
@@ -82,10 +86,10 @@ index 0ad0c82a5d..964ebf0a43 100644
  #   https://github.com/grpc/grpc-java/pull/12148
  #   https://github.com/grpc/grpc-java/pull/12207
 diff --git a/src/main/java/com/google/devtools/build/lib/BUILD b/src/main/java/com/google/devtools/build/lib/BUILD
-index d385177454..db650563d7 100644
+index 3083138d93..e20f77f621 100644
 --- a/src/main/java/com/google/devtools/build/lib/BUILD
 +++ b/src/main/java/com/google/devtools/build/lib/BUILD
-@@ -582,7 +582,7 @@ java_library(
+@@ -584,7 +584,7 @@ java_library(
          "//third_party:guava",
          "//third_party:jsr305",
          "@com_google_protobuf//:protobuf_java",
