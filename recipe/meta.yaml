@@ -18,8 +18,12 @@ source:
   - fn: bazel
     url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-linux-x86_64    # [build_platform == "linux-64"]
     sha256: c6eeb4cb5fe9679d96dc5b54126b60858956567550a7d979dae65df15f4d4681    # [build_platform == "linux-64"]
+    url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-linux-arm64     # [build_platform == "linux-aarch64"]
+    sha256: 045a64f35321071bde589a79a055c12e80e62717fe53b0306dc6a225851e90a6    # [build_platform == "linux-aarch64"]
     url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-x86_64   # [build_platform == "osx-64"]
     sha256: 09a439b26910868a846814444d614ae8d2fc3befa9a9de307977d29265a6b313    # [build_platform == "osx-64"]
+    url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-arm64    # [build_platform == "osx-arm64"]
+    sha256: 08eb57f8db5868ad2fd2320d7922896e3aca88da6b78db5503f06a0bfc734c83    # [build_platform == "osx-arm64"]
 
 build:
   number: 0
