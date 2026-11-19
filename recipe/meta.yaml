@@ -35,7 +35,7 @@ requirements:
     - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
     - bazel-toolchain >=0.2.0
-    - openjdk
+    - openjdk <26
     - libprotobuf
     - sed
   host:
