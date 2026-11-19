@@ -3,8 +3,11 @@ schema_version: 1
 context:
   version: "9.3.3"
   base_url: https://github.com/bazelbuild/bazel/releases/download
+  # these are relative to build_platform, not target_platform
+  # cannot use the more accurate `build_platform is startingwith("linux")`
+  # here due to https://github.com/prefix-dev/rattler-build/issues/2961
   bz_os: ${{ "linux" if linux else "darwin" }}
-  bz_arch: ${{ "x86_64" if x86_64 else "arm64" }}
+  bz_arch: ${{ "x86_64" if build_platform in ("linux-64", "osx-64") else "arm64" }}
   bz_hash: ${{ "9f38a7e60bb03a320d1403d5c344c7cf5f8ab89d3478cb3472a1f8f4a11e8c49" if build_platform == "linux-64" else
                "fef3e5657afa77e7c257dd486031802b96e8d0df7b135feaa14d649d27ce22c6" if build_platform == "linux-aarch64" else
                "ae392bcc92ff73da614d58bd36e0da0ac32fbeb830c4423184829c3f11de9cc6" if build_platform == "osx-64" else
