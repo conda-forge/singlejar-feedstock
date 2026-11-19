@@ -1,15 +1,14 @@
 schema_version: 1
 
 context:
-  version: "9.3.1"
+  version: "9.3.3"
   base_url: https://github.com/bazelbuild/bazel/releases/download
   bz_os: ${{ "linux" if linux else "darwin" }}
   bz_arch: ${{ "x86_64" if x86_64 else "arm64" }}
-  bz_hash: ${{ "444c309e4d3a3007ef39debdf483e4399912a7d0073f52dfb56352a15a727dd8" if build_platform == "linux-64" else
-               "b9dfab19c2f67d78f14aae8c6f250d40040177263c64a8cdf5008cd8e3a7db73" if build_platform == "linux-aarch64" else
-               "4fdea4f435654aac531a904f6a0513576e48df2d9bc03d85b7aaaeb913c3cedb" if build_platform == "osx-64" else
-               "68ccda4efe08b9f25b4cf480dadf7ffec428deaac0fe4868936c6085a80089dd" if build_platform == "osx-arm64" else
-               "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef" }}
+  bz_hash: ${{ "9f38a7e60bb03a320d1403d5c344c7cf5f8ab89d3478cb3472a1f8f4a11e8c49" if build_platform == "linux-64" else
+               "fef3e5657afa77e7c257dd486031802b96e8d0df7b135feaa14d649d27ce22c6" if build_platform == "linux-aarch64" else
+               "ae392bcc92ff73da614d58bd36e0da0ac32fbeb830c4423184829c3f11de9cc6" if build_platform == "osx-64" else
+               "a404774c826a5322de4fa621dd03d9d83abf61544238f0cc9149291a03a7464f" }}
 
 package:
   name: singlejar
@@ -17,7 +16,7 @@ package:
 
 source:
   - url: ${{ base_url }}/${{ version }}/bazel-${{ version }}-dist.zip
-    sha256: 6169ed42d506f3466fac899cc0a1ffa05718dece512cde9c2cd5eebf4e9ff4c3
+    sha256: d78e9aa4edd22076affca23c04d376a031982d63f75cbee16d0233fe3e848149
     patches:
       # Keep these patches in sync with the relevant ones from bazel-feedstock.
       - patches/0001-allow-args-to-be-passed-to-bazel_build.patch
@@ -28,7 +27,7 @@ source:
     file_name: bazel-${{ version }}
 
 build:
-  number: 1
+  number: 0
   skip: win
 
 requirements:
