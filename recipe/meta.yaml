@@ -1,4 +1,4 @@
-{% set version = "8.8.2" %}
+{% set version = "8.9.0" %}
 
 {% set base_url = "https://github.com/bazelbuild/bazel/releases/download" %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: {{ base_url }}/{{ version }}/bazel-{{ version }}-dist.zip
-    sha256: d14a2e18a02a1d50ef06ba5fdcf636587d595b41e1661903cfce916df43284a0
+    sha256: 6320f08f70285bcae626ce10dc3e281088b748532b182d7ad77453acd146a8b3
     patches:
       # Keep these patches in sync with the relevant ones from bazel-feedstock.
       - patches/0001-allow-args-to-be-passed-to-bazel_build.patch
@@ -17,16 +17,16 @@ source:
 
   - fn: bazel-{{ version }}
     url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-linux-x86_64   # [build_platform == "linux-64"]
-    sha256: 29dc454c2ccb2ba2fe806eb010215c581405d5c273ce226a0c1cd29fb948d6bb   # [build_platform == "linux-64"]
+    sha256: 772705e9069657fb6974b1cd083c82eb023065644edcda3d9a391965eea0600b   # [build_platform == "linux-64"]
     url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-linux-arm64    # [build_platform == "linux-aarch64"]
-    sha256: 40e39465dbf7d27c49515edaec37c7fd013e6c60ec5b8d958ae8f7e268d501f7   # [build_platform == "linux-aarch64"]
+    sha256: f4331026ed7ed632f0e48e4982c27d86a1ff24a9ac8c264916aa8549a965b4a8   # [build_platform == "linux-aarch64"]
     url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-x86_64  # [build_platform == "osx-64"]
-    sha256: 39c378cb959b565275d97e68b93078173014ac7a4c457473a218fe2e3e4c33b8   # [build_platform == "osx-64"]
+    sha256: b5399ac8b01fe44321c1d2b6208357059cfb75d1018f55458264264335b45236   # [build_platform == "osx-64"]
     url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-arm64   # [build_platform == "osx-arm64"]
-    sha256: 39bf603020fcdca3cae61e7032f99e6d1143dfbd90c72ac24b1597550aef4f1b   # [build_platform == "osx-arm64"]
+    sha256: 10a5e3d53a47fd9cfd719af75d287572ed417ed7b1fb5fa3ecd3ac4257790d9b   # [build_platform == "osx-arm64"]
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win]
 
 requirements:
